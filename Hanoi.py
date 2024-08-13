@@ -37,19 +37,32 @@ class Hanoi(Problem):
 initial_state = ((2, 1, 0), (), ())
 goal_state = ((), (), (2, 1, 0))
 
-# criandoo problema
+# criando problema
 problema_hanoi = Hanoi(initial_state, goal_state)
 
-# resolvendo c/ busca em largura (BFS)
 solucao_bfs = breadth_first_tree_search(problema_hanoi)
 
-# resolvendo c/ busca A* (heurística informada)
 solucao_astar = astar_search(problema_hanoi)
 
-# conta n° de movimentos
+# conta número de movimentos
 num_movimentos_bfs = len(solucao_bfs.path())
 num_movimentos_astar = len(solucao_astar.path())
 
-# Exibindo o número de movimentos
-print("Número de movimentos com BFS:", num_movimentos_bfs)
-print("Número de movimentos com A*:", num_movimentos_astar)
+# printando estado inicial e cada estado em cada movimento
+print("Solução com BFS:")
+print("Estado inicial:", initial_state)
+# estados um a um
+path_bfs = solucao_bfs.path()
+for i in range(len(path_bfs)): #ta feinho mas por enquanto é o que temos
+    print(f"Estado {i}: {path_bfs[i].state}")
+
+print("\nNúmero de movimentos com BFS:", num_movimentos_bfs)
+
+print("\nSolução com A*:")
+print("Estado inicial:", initial_state)
+# mesma coisa
+path_astar = solucao_astar.path()
+for i in range(len(path_astar)):
+    print(f"Estado {i}: {path_astar[i].state}")
+
+print("\nNúmero de movimentos com A*:", num_movimentos_astar)
